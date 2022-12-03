@@ -248,7 +248,7 @@ outdoorsTxt.innerHTML = outdoors;
   .catch(error => {
     console.log(error);
     alert("This city does not exist")
-    window.location.href = "/dist";
+    window.location.href = "/";
   })
 }
 
