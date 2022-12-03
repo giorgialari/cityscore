@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City Score</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
+rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+<link rel="stylesheet" href="./assets/css/style.css">
+
+</head>
+  <body>
+<!-- Just an image -->
+<nav class="navbar navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" id="logo" href="/dist/">
+      CITY SCORE
+    </a>
+  </div>
+</nav>
+
+<div class="all-container">
+
+<div class="image-container" id="image-containerId">
+  <img id="image" class="image"alt="">
+  <div id="title-city" class="title-city">
+    <p class="city-name" id="cityName"></p>
+  </div>
+</div>
+
+<div id="errorMessage"></div>
+<div class="input-group">
+  <div class="title-form">
+    <div>
+      <h1>Search for a city</h1>
+    </div>
+    <div class="form">
+      <div class="form-outline">
+        <input type="text" class="form-control" id="citySelect" name="citySelect" onfocus="getAx()" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <label class="form-label" for="form1">Search</label>
+      </div>
+      <button class="btn btn-outline-secondary" type="button" id="submit" onclick="submit(), citySelectSubmit(),appendTitle(), imageCity(),reloadDetails()" >
+      <i class="fas fa-search"></i>
+      </button>
+      <ul class="list-group" id="result"></ul>
+    </div>
+  </div>
+</div>
+
+
+<div id="summary" class="summary"></div>
+<div class="accordion" id="accordionPanelsStayOpenExample">
+  <!-- Housing -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button collapsed"  id="extraInfoHousing" onclick="extraInfoHousingClick()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        <div id="messageHousing"></div>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body">
+        <div id="extraBodyHousing"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Cost of Living -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+      <button class="accordion-button collapsed"  id="extraInfoCostOfLiving" onclick="extraInfoCostOfLiving()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+        <div id="messageCostOfLiving"></div>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+      <div class="accordion-body">
+        <div id="extraBodyCostOfLiving"></div>
+      </div>
+    </div>
+  </div>
+<!-- Startups -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+      <button class="accordion-button collapsed" id="extraInfoStartups" onclick ="extraInfoStartups()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+        <div id="messageStartups"></div>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+      <div class="accordion-body">
+        <div id="extraBodyStartups"></div>
+      </div>
+    </div>
+  </div>
+<!-- Venture Capital  -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+      <button class="accordion-button collapsed" id="extraInfoVentureCapital" onclick ="extraInfoVentureCapital()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+        <div id="messageVentureCapital"></div>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+      <div class="accordion-body">
+        <div id="extraBodyVentureCapital"></div>
+      </div>
+    </div>
+  </div>
+<!-- Travel Connectivity -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+      <button class="accordion-button collapsed" id="extraInfoTravelConnectivity" onclick="extraInfoTravelConnectivity()"type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+        <div id="messageTravelConnectivity"></div>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+      <div class="accordion-body">
+        <div id="extraBodyTravelConnectivity"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Commute -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingSix">
+      <button class="accordion-button collapsed" id="extraInfoCommute" onclick="extraInfoCommute()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">
+        <div id="messageCommute"></div>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
+      <div class="accordion-body">
+        <div id="extraBodyCommute"></div>
+      </div>
+    </div>
+  </div>
+<!-- Business Freedom -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingSeven">
+    <button class="accordion-button collapsed" id="extraInfoBusinessFreedom" onclick="extraInfoBusinessFreedom()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
+      <div id="messageBusinessFreedom"></div>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSeven">
+    <div class="accordion-body">
+      <div id="extraBodyBusinessFreedom"></div>
+    </div>
+  </div>
+</div>
+<!-- Safety -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingEight">
+    <button class="accordion-button collapsed" id="extraInfoSafety" onclick="extraInfoSafety()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false" aria-controls="panelsStayOpen-collapseEight">
+      <div id="messageSafety"></div>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseEight" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingEight">
+    <div class="accordion-body">
+      <div id="extraBodySafety"></div>
+    </div>
+  </div>
+</div>
+<!-- Healthcare -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingNine">
+    <button class="accordion-button collapsed" id="extraInfoHealthcare" onclick="extraInfoHealthcare()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseNine" aria-expanded="false" aria-controls="panelsStayOpen-collapseNine">
+      <div id="messageHealthcare"></div>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseNine" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingNine">
+    <div class="accordion-body">
+      <div id="extraBodyHealthcare"></div>
+    </div>
+  </div>
+</div>
+<!-- Education -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingTen">
+    <button class="accordion-button collapsed" id="extraInfoEducation" onclick="extraInfoEducation()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTen" aria-expanded="false" aria-controls="panelsStayOpen-collapseTen">
+      <div id="messageEducation"></div>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseTen" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTen">
+    <div class="accordion-body">
+      <div id="extraBodyEducation"></div>
+    </div>
+  </div>
+</div>
+<!-- Environmental Quality -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingEleven">
+    <button class="accordion-button collapsed" id="extraInfoEnvironmentalQuality" onclick="extraInfoEnvironmentalQuality()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEleven" aria-expanded="false" aria-controls="panelsStayOpen-collapseEleven">
+      <div id="messageEnvironmentalQuality"></div>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseEleven" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingEleven">
+    <div class="accordion-body">
+      <div id="extraBodyEnvironmentalQuality"></div>
+    </div>
+  </div>
+</div>
+<!-- Economy -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingTwelve">
+    <button class="accordion-button collapsed" id="extraInfoEconomy" onclick="extraInfoEconomy()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwelve" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwelve">
+      <div id="messageEconomy"></div>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseTwelve" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwelve">
+    <div class="accordion-body">
+      <div id="extraBodyEconomy"></div>
+    </div>
+  </div>
+</div>
+<!-- Taxation -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingThirteen">
+    <button class="accordion-button collapsed" id="extraInfoTaxation" onclick="extraInfoTaxation()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThirteen" aria-expanded="false" aria-controls="panelsStayOpen-collapseThirteen">
+      <div id="messageTaxation"></div>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseThirteen" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThirteen">
+    <div class="accordion-body">
+      <div id="extraBodyTaxation"></div>
+    </div>
+  </div>
+</div>
+<!-- Internet Access -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingFourteen">
+    <button class="accordion-button collapsed" id="extraInfoInternetAccess" onclick="extraInfoInternetAccess()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFourteen" aria-expanded="false" aria-controls="panelsStayOpen-collapseFourteen">
+      <div id="messageInternetAccess"></div>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseFourteen" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFourteen">
+    <div class="accordion-body">
+      <div id="extraBodyInternetAccess"></div>
+    </div>
+  </div>
+</div>
+<!-- Leisure&Culture -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingFifthteen">
+    <button class="accordion-button collapsed" id="extraInfoLeisureCulture" onclick="extraInfoLeisureCulture()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFifthteen" aria-expanded="false" aria-controls="panelsStayOpen-collapseFifthteen">
+      <div id="messageLeisureCulture"></div>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseFifthteen" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFifthteen">
+    <div class="accordion-body">
+      <div id="extraBodyLeisureCulture"></div>
+    </div>
+  </div>
+</div>
+<!-- Tolerance -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingSixteen">
+    <button class="accordion-button collapsed" id="extraInfoTolerance" onclick="extraInfoTolerance()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSixteen" aria-expanded="false" aria-controls="panelsStayOpen-collapseSixteen">
+      <div id="messageTolerance"></div>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseSixteen" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSixteen">
+    <div class="accordion-body">
+      <div id="extraBodyTolerance"></div>
+    </div>
+  </div>
+</div>
+<!-- Outdoors -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingSeventeen">
+    <button class="accordion-button collapsed" id="extraInfoOutdoors" onclick="extraInfoOutdoors()" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeventeen" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeventeen">
+      <div id="messageOutdoors"></div>
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseSeventeen" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSeventeen">
+    <div class="accordion-body">
+      <div id="extraBodyOutdoors"></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<footer>
+  <div id="footer">Created by Giorgia Lari</div>
+</footer>
+
+
+
+
+  <!-- MDB -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"
+></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<!-- <script src="index.bundle.js"></script> -->
+<script src="bundle.js">
+</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+</body>
+</html>
+
+<script>
+                
+</script>

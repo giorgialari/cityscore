@@ -1,0 +1,226 @@
+body {
+  background-color: aliceblue;
+  background-image: url('/assets/img/homepageimg.jpeg');
+  background-repeat: no-repeat;
+  font-family: 'Alice', serif;
+}
+.navbar-brand{
+  margin: auto;
+  font-family: 'Allerta Stencil', sans-serif;
+}
+
+.all-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title-form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+.form{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.input-group{
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
+  margin-bottom: 2%;
+}
+.form-outline{
+  width: 50%;
+}
+#citySelect{
+  background-color: white;
+
+}
+
+#submit {
+  background-color: white;
+}
+#footer{
+  display:none;
+  text-align: center;
+  background-color: black;
+  color: white;
+  margin-top: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+
+}
+.image-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.image{
+width: 100%;  
+height: 400px;
+  object-fit: cover;
+  object-position: center;
+  margin:0;
+}
+.title-city{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 50px;
+background-color:rgba(21, 18, 21, 0.3);
+width: 400px;
+height: 100px;
+text-align: center;
+border: 1px solid white;
+}
+.city-name{
+  color: white;
+  margin: 2%;
+}
+
+.summary {
+  width: 50%;
+  margin-bottom: 2%;
+}
+
+.accordion{
+  width: 40%;
+}
+.accordion-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: left;
+  background-color: aliceblue;
+}
+.accordion-item{
+  border: none;
+}
+.accordion-body {
+  background-color: aliceblue;
+}
+
+.containerInfo{
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.valoreContainer {
+  display: flex;
+  flex-direction: row;
+}
+.nomeElemento {
+  width: 200px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.valoreElemento{
+  margin-right: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
+.progress {
+  width: 300px;
+  height: 20px;
+  border-radius: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.infoContainer{
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoContainer{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 767px) {
+  .title-form{
+    margin-top: 50% ;
+  }
+  .input-group{
+    margin-top: 5%;
+  }
+  .title-city{
+    width: 100%;
+    font-size: 45px;
+    height: 90px;
+    }
+  .summary {
+    width: 90%;
+  }
+  .accordion{
+    width: 90%;
+  }
+  .containerInfo{
+    width: 250px;
+  }
+  .nomeElemento {
+    width: 100px;
+  }
+  .progress {
+    width: 100px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .title-form{
+    margin-top: 50% ;
+  }
+
+  .summary {
+    width: 90%;
+  }
+  .accordion{
+    width: 90%;
+  }
+  .containerInfo{
+    width: 400px;
+  }
+  .nomeElemento {
+    width: 100px;
+  }
+  .progress {
+    width: 200px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+
+  .summary {
+    width: 90%;
+  }
+  .accordion{
+    width: 90%;
+  }
+  .containerInfo{
+    width: 400px;
+  }
+  .nomeElemento {
+    width: 100px;
+  }
+  .progress {
+    width: 200px;
+  }
+}
+@media only screen and (width: 1024px) and (height: 1366px) {
+  body{
+    background-size: 250%;
+  }
+}
+

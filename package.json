@@ -1,0 +1,21 @@
+{
+  "name": "cityscore",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "img-loader": "^4.0.0",
+    "axios": "^1.2.0",
+    "css-loader": "^6.7.2",
+    "lodash": "^4.17.21",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  }
+}
